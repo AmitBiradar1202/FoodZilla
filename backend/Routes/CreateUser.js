@@ -5,11 +5,7 @@ const bycrpt =require('bcryptjs');
 const jwt=require('jsonwebtoken')
 
 const router=express.Router();
-const jwtSecret = "HaHa"
-
-
-
-
+const jwtSecret = "AmitBiradar";
 router.post('/creatuser',query('email').isEmail() ,
         query('password').isStrongPassword(),
         async(req,res)=>{
