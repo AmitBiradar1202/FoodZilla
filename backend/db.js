@@ -8,10 +8,21 @@ module.exports = function (callback) {
         .then(()=>{console.log("Connected") 
                         const foodCollection = mongoose.connection.db.collection("food_items");
                         foodCollection.find({}).toArray(async function (err, data) {
-                                if(err){console.log(err)}
-                                else{console.log(data)}
+                                const foodCategory=mongoose.connection.db.collection("foodCategory");
+                                foodCategory.find({}).toArray(async(err,newdata)=>{
+                                if(err){
+                                        console.log(err);
+                                }
+                                else{
+                                        global.food_items=data
+                                       global.foodCategory=newdata;
+                                }
+                        })
                         })
                         });
+                        
+
+                        
     
                 }
         

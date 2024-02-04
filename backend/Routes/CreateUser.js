@@ -47,10 +47,7 @@ router.post('/creatuser',query('email').isEmail() ,
 })
 
 
-router.post('/login', [
-    body('email', "Enter a Valid Email").isEmail(),
-    body('password', "Password cannot be blank").exists(),
-], async (req, res) => {
+router.post('/login', async (req, res) => {
     let success = false
     const errors = validationResult(req);
     if (!errors.isEmpty()) { 
@@ -59,7 +56,7 @@ router.post('/login', [
 
     const { email, password } = req.body;
     try {
-        let user = await User.findOne({ email });  //{email:email} === {email}
+        let user = await User.findOne({ email });  //{req.body.email} === {email}
         if (!user) {
             return res.status(400).json({ success, error: "Try Logging in with correct credentials" });
         }
