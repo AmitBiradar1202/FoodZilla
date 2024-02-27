@@ -12,11 +12,12 @@ import {
 // import Navbar from './components/Navbar';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp.jsx';
+import CartProvider from './components/ContextReducer.jsx';
 
 function App() {
   return (
-    
-      <Router>
+    <CartProvider>
+        <Router>
         <div>
           <Routes>
             <Route exact path="/" element={<Home />} />
@@ -27,6 +28,8 @@ function App() {
         </div>
       </Router>
     
+    </CartProvider>
+      
   );
 }
 
